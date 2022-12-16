@@ -1,6 +1,5 @@
 import csv
 
-
 class Item:
     __pay_rate = 0.8  # Уровень оплаты после скидки 20%
     all = []
@@ -9,7 +8,6 @@ class Item:
         self.__name = name
         self.__price = price
         self.__quantity = quantity
-        self.all.append(self)
 
     @property
     def name(self):
@@ -37,10 +35,9 @@ class Item:
                 count += 1
                 if count == 0:
                     continue
-                self = f"i{count}"
                 name, price, quantity = i[0], i[1], i[2]
-                self = cls(name, price, quantity)
-
+                product = cls(name, price, quantity)
+                cls.all.append(product)
 
     def __str__(self):
         return f"{self.__class__.__name__}({self.__name}, {self.__price}, {self.__quantity})"
@@ -50,3 +47,4 @@ if __name__ == "__main__":
 
     for item in Item.all:
         print(item)
+    print(Item.all)
